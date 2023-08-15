@@ -1,0 +1,27 @@
+/**
+ * Configuration object that defines various environment-specific settings.
+ * Each key corresponds to an environment variable or configuration value.
+ */
+
+export default {
+  port: 'PORT',
+  postgresConfig: {
+    host: 'POSTGRES_HOST',
+    port: 'POSTGRES_PORT',
+    username: 'POSTGRES_USER',
+    password: 'POSTGRES_PASSWORD',
+    database: 'POSTGRES_DB',
+  },
+
+  accessTokenPrivateKey: 'JWT_ACCESS_TOKEN_PRIVATE_KEY',
+  accessTokenPublicKey: 'JWT_ACCESS_TOKEN_PUBLIC_KEY',
+  refreshTokenPrivateKey: 'JWT_REFRESH_TOKEN_PRIVATE_KEY',
+  refreshTokenPublicKey: 'JWT_REFRESH_TOKEN_PUBLIC_KEY',
+
+  smtp: {
+    host: 'EMAIL_HOST',
+    pass: 'EMAIL_PASS',
+    port: 'EMAIL_PORT',
+    user: 'EMAIL_USER',
+  },
+};
