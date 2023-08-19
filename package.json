@@ -12,8 +12,9 @@
     "lint": "eslint . --ext .ts",
     "typeorm": "typeorm-ts-node-commonjs",
     "migrate": "rm -rf build && npm build && npm typeorm migration:generate ./src/migrations/added-user-entity -d ./src/utils/data-source.ts",
-    "migrate-window": "rmdir /s /q build && npm build && npm typeorm migration:generate ./src/migrations/added-user-entity -d ./src/utils/data-source.ts",
-    "db:push": "rm -rf build && npm build && npm typeorm migration:run -d src/utils/data-source.ts"
+    "db:push": "rm -rf build && npm build && npm typeorm migration:run -d src/utils/data-source.ts",
+    "migrate-window": "rmdir /s /q build && npm run build && npm run typeorm migration:generate ./src/migrations/added-user-entity -d ./src/utils/data-source.ts",
+    "db:push-window": "rmdir /s /q build && npm run build && npm run typeorm migration:run -- -d ./src/utils/data-source.ts"
   },
   "husky": {
     "hooks": {

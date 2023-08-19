@@ -1,38 +1,45 @@
+import fs from 'fs';
 import jwt, { SignOptions } from 'jsonwebtoken';
 import config from 'config';
 
 /**
- * Sign a JSON Web Token (JWT) with the specified payload, private key, and options.
+ * Read key from file.
+ *
+ * @param {string} keyFilePath - The file path of the key.
+ * @returns {string} - The key content as a string.
+ */
+export function readKeyFromFile(keyFilePath: string): string {
+  return fs.readFileSync(keyFilePath, 'utf8');
+}
+
+/**
+ * Sign a JSON Web Token (JWT) with the specified payload, key, and options.
  *
  * @param {object} payload - The payload to include in the JWT.
- * @param {('accessTokenPrivateKey' | 'refreshTokenPrivateKey')} keyName - The configuration key for the private key.
+ * @param {string} keyFilePath - The file path of the key.
  * @param {SignOptions} options - Additional options for JWT signing (optional).
  * @returns {string} - The signed JWT.
  */
-export const signJwt = (
-  payload: object,
-  keyName: 'accessTokenPrivateKey' | 'refreshTokenPrivateKey',
-  options: SignOptions,
-) => {
-  const privateKey = Buffer.from(config.get<string>(keyName), 'base64').toString('ascii');
-  return jwt.sign(payload, privateKey, {
+export const signJwt = (payload: object, keyFilePath: string, options: SignOptions) => {
+  const key = readKeyFromFile(config.get<string>(keyFilePath));
+  return jwt.sign(payload, key, {
     ...(options && options),
     algorithm: 'RS256',
   });
 };
 
 /**
- * Verify a JSON Web Token (JWT) using the specified token and public key.
+ * Verify a JSON Web Token (JWT) using the specified token and key.
  *
  * @template T - The type of the payload.
  * @param {string} token - The JWT to verify.
- * @param {('accessTokenPublicKey' | 'refreshTokenPublicKey')} keyName - The configuration key for the public key.
+ * @param {string} keyFilePath - The file path of the key.
  * @returns {T | null} - The decoded payload or null if verification fails.
  */
-export const verifyJwt = <T>(token: string, keyName: 'accessTokenPublicKey' | 'refreshTokenPublicKey'): T | null => {
+export const verifyJwt = <T>(token: string, keyFilePath: string): T | null => {
   try {
-    const publicKey = Buffer.from(config.get<string>(keyName), 'base64').toString('ascii');
-    const decoded = jwt.verify(token, publicKey) as T;
+    const key = readKeyFromFile(config.get<string>(keyFilePath));
+    const decoded = jwt.verify(token, key) as T;
 
     return decoded;
   } catch (error) {
