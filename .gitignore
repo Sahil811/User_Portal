@@ -4,5 +4,3 @@ node_modules/
 build/
 tmp/
 temp/
-private_key.pem
-public_key.pem
