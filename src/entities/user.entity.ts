@@ -29,7 +29,7 @@ export class User extends Model {
     enum: RoleEnumType,
     default: RoleEnumType.USER,
   })
-  role: RoleEnumType.USER;
+  role: RoleEnumType.USER | RoleEnumType.ADMIN;
 
   @Column()
   password!: string;

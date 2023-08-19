@@ -3,6 +3,7 @@ import { User } from '../entities/user.entity';
 import redisClient from '../utils/connectRedis';
 import { AppDataSource } from '../utils/data-source';
 import { signJwt } from '../utils/jwt';
+import AppError from '../utils/appError';
 
 const userRepository = AppDataSource.getRepository(User);
 
@@ -37,4 +38,20 @@ export const signTokens = async (user: User) => {
   });
 
   return { access_token, refresh_token };
+};
+
+export const deleteUser = async (userId: string) => {
+  const user = await findUserById(userId);
+
+  if (!user) {
+    throw new AppError(404, 'User not found');
+  }
+
+  await userRepository.remove(user);
+  return;
+};
+
+export const findAllUsers = async () => {
+  const users = await userRepository.find();
+  return users;
 };

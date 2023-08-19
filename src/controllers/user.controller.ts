@@ -1,14 +1,56 @@
 import { NextFunction, Request, Response } from 'express';
+import { deleteUser, findAllUsers } from '../services/user.service';
+import { User } from '../entities/user.entity';
 
-export const getMeHandler = async (req: Request, res: Response, next: NextFunction) => {
+export const deleteUserHandler = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const user = res.locals.user;
+    const userId = req.params.userRef;
 
-    res.status(200).status(200).json({
+    // Delete the user
+    const deletedUser = await deleteUser(userId);
+
+    res.status(200).json({
+      status: 'success',
+      message: 'User deleted successfully',
+      data: deletedUser,
+    });
+  } catch (err: unknown) {
+    next(err);
+  }
+};
+
+export const getUserDetailsHandler = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    // Get user details without password
+    const userDetails = res.locals.user;
+
+    res.status(200).json({
       status: 'success',
       data: {
-        user,
+        id: userDetails.id,
+        name: userDetails.name,
+        email: userDetails.email,
+        role: userDetails.role,
       },
+    });
+  } catch (err: unknown) {
+    next(err);
+  }
+};
+
+export const listUsersHandler = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    // List all users without passwords
+    const users = await findAllUsers();
+
+    res.status(200).json({
+      status: 'success',
+      data: users.map((user: User) => ({
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+      })),
     });
   } catch (err: unknown) {
     next(err);

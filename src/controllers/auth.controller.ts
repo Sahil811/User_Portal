@@ -6,7 +6,7 @@ import { createUser, findUser, findUserByEmail, findUserById, signTokens } from 
 import AppError from '../utils/appError';
 import redisClient from '../utils/connectRedis';
 import { signJwt, verifyJwt } from '../utils/jwt';
-import { User } from '../entities/user.entity';
+import { User, RoleEnumType } from '../entities/user.entity';
 import Email from '../utils/email';
 
 const cookiesOptions: CookieOptions = {
@@ -34,12 +34,13 @@ export const registerUserHandler = async (
   next: NextFunction,
 ) => {
   try {
-    const { name, password, email } = req.body;
+    const { name, password, email, role } = req.body;
 
     const newUser = await createUser({
       name,
       email: email.toLowerCase(),
       password,
+      role: role || RoleEnumType.USER,
     });
 
     const { hashedVerificationCode, verificationCode } = User.createVerificationCode();

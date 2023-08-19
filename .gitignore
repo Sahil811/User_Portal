@@ -4,6 +4,5 @@ node_modules/
 build/
 tmp/
 temp/
-.env
 private_key.pem
 public_key.pem
