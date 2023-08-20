@@ -169,6 +169,9 @@ user_portal
 │     ├─ resetPassword.pug
 │     ├─ verificationCode.pug
 │     └─ _styles.pug
+├─ test
+│  ├─ user.controller.test.ts
+│  │
 └─ tsconfig.json
 ```
 
@@ -178,6 +181,72 @@ user_portal
 
 - Organize your files around product features, not roles. Also, place your test files next to their implementation. [Details](#why-feature-oriented-architecture)
   > Why? Instead of a long list of files, you will create small modules that encapsulate one responsibility including its test and so on. It gets much easier to navigate through and things can be found at a glance.
+
+### Topic cover in this Project
+
+- Setup Node.js with Express, PostgreSQL, Redis, and TypeORM
+  - Creating PostgreSQL and Redis Database with Docker
+  - Setup Environment Variables with Dotenv
+- Initialize a New TypeORM Express App
+- Connecting an Express application with PostgreSQL
+- Connecting an ExpressJs application to Redis
+- Run the Express Server
+- List the Node.js API Routes
+- User Login and Register Flow with JWT Authentication
+- Defining Base and User Entities with TypeORM
+- Defining Zod Schemas to Validate Request Body
+- Create Middleware to Parse Zod Schema
+- Password Management with Bcrypt
+- Create Services to Interact with the Database
+- Asymmetric Encryption (RS256 algorithm) Json Web Tokens
+- Service to Sign Access and Refresh Tokens
+- Error Handling in Express
+- Create Authentication Route Controllers
+- Create User Route Controller
+- Create Authentication Middleware Guard
+- Create the API Routes
+  - Authentication Routes
+  - User Routes
+- Add the Routes to the Express Middleware Stack
+- Run Database Migrations with TypeORM
+- Create a Utility Class to Send Emails
+  - Require the Nodemailer Credentials
+  - Define the Email Class Attributes
+  - Create a Nodemailer Transporter
+  - Create a Method to Generate the Email Templates
+  - Create a Method to Send the Emails
+- Creating the Email Templates with Pug
+- Create the User Entity with TypeORM
+- Database Schema Migration with TypeORM
+- Update the User Register Controller
+- Add a Controller to Verify the Email
+- Model Data with TypeORM and PostgreSQL
+- Create Validation Schemas with Zod
+- Create Services to Communicate with Database
+- Add the Routes to the Express Middleware Pipeline
+- Run Database Migration with TypeORM
+
+## Available Scripts
+
+```bash
+test: Runs Jest, the testing framework, to execute the tests and provide test coverage information.
+
+build: Invokes the TypeScript compiler (tsc) to compile TypeScript source files into JavaScript files. This is useful for generating the output that can be executed by Node.js.
+
+start: Executes the compiled server code using ts-node. It starts the Node.js server by running the server.js file located in the build/src directory.
+
+dev: Utilizes nodemon to run the server in development mode. This script monitors for changes in the codebase and automatically restarts the server when changes are detected.
+
+migrate: A custom script that performs the following actions:
+1. Removes the existing build directory to clean the previous build artifacts.
+2. Invokes the build script to compile the TypeScript code.
+3. Calls the typeorm migration:generate command to generate a migration based on a specified file and data source.
+
+db:push: Similar to the migrate script, this custom script:
+1. Removes the existing build directory.
+2. Invokes the build script to compile the TypeScript code.
+3. Executes the typeorm migration:run command to apply migrations to the database using a specified data source.
+```
 
 ### About Me
 

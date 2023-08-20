@@ -7,12 +7,11 @@ export const deleteUserHandler = async (req: Request, res: Response, next: NextF
     const userId = req.params.userRef;
 
     // Delete the user
-    const deletedUser = await deleteUser(userId);
+    await deleteUser(userId);
 
     res.status(200).json({
       status: 'success',
       message: 'User deleted successfully',
-      data: deletedUser,
     });
   } catch (err: unknown) {
     next(err);

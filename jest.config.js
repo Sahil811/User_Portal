@@ -1,3 +1,8 @@
-export const preset = 'ts-jest';
-export const testEnvironment = 'node';
-export const setupFilesAfterEnv = ['<rootDir>/jest.setup.js'];
+/* eslint-disable no-undef */
+// jest.config.js
+module.exports = {
+  preset: 'ts-jest',
+  testEnvironment: 'node',
+  setupFilesAfterEnv: ['./jest.setup.redis-mock.ts'],
+  //   testMatch: ['**/tests/**/*.test?.ts'],
+};

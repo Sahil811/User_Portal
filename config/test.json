@@ -1,0 +1,21 @@
+{
+  "NODE_ENV": "test",
+  "port": 3000,
+  "postgresConfig": {
+    "host": "test-postgres-host",
+    "port": 5432,
+    "username": "test-user",
+    "password": "test-password",
+    "database": "test-database"
+  },
+  "accessTokenPrivateKey": "test-access-token-private-key",
+  "accessTokenPublicKey": "test-access-token-public-key",
+  "refreshTokenPrivateKey": "test-refresh-token-private-key",
+  "refreshTokenPublicKey": "test-refresh-token-public-key",
+  "smtp": {
+    "host": "test-email-host",
+    "pass": "test-email-pass",
+    "port": 587,
+    "user": "test-email-user"
+  }
+}

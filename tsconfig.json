@@ -11,5 +11,10 @@
     "skipLibCheck": true,
     "outDir": "./build",
     "rootDir": "."
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "build",
+    "jest.config.ts" // Exclude the Jest configuration file
+  ]
 }
