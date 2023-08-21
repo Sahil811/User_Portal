@@ -248,6 +248,81 @@ db:push: Similar to the migrate script, this custom script:
 3. Executes the typeorm migration:run command to apply migrations to the database using a specified data source.
 ```
 
+## API Documentation
+
+```bash
+Welcome to the documentation for the Node.js API endpoints provided by this application. This API allows you to manage user registration, login, user details retrieval, user listing, and user deletion. Please make sure to follow the guidelines provided below for each API endpoint.
+
+Base URL: http://localhost:8000/api/
+
+
+Register User
+
+Endpoint: /users/register
+Method: POST
+Description: Register a new user with the specified details.
+Request Body:
+{
+    "name": "sahil siddiqui",
+    "password": "12345678",
+    "passwordConfirm": "12345678",
+    "email": "sahil@gmail.com",
+    "role": "admin"
+}
+
+
+Verify Email
+Endpoint: /verifyemail/:verificationCode
+Method: GET
+Description: This endpoint allows users to verify their email address by providing a verification code.
+
+
+User Login
+
+Endpoint: /users/login
+Method: POST
+Description: Log in a user with their email and password.
+Request Body:
+{
+    "password": "12345678",
+    "email": "sahil@gmail.com"
+}
+
+
+Get User Details
+
+Endpoint: /users/details
+Method: GET
+Description: Retrieve details of the currently logged-in user.
+Authentication: The request must include the authentication token or session key obtained after login.
+Response: The response will contain detailed information about the currently logged-in user.
+
+
+List Users (Admin Only)
+
+Endpoint: /users/list
+Method: GET
+Description: Retrieve a list of users. This endpoint is accessible only to users with the "admin" role.
+Authentication: The request must include the authentication token or session key obtained after login, and the logged-in user must have the "admin" role.
+Response: The response will contain a list of user objects, each containing user details.
+
+
+Delete User (Admin Only)
+
+Endpoint: /users/delete
+Method: POST
+Description: Delete a user by providing their user reference.
+Request Body:
+{
+    "userRef": "d75cba4f-c007-41d1-b48a-3308ea9a548f"
+}
+Authentication: The request must include the authentication token or session key obtained after login, and the logged-in user must have the "admin" role.
+Response: A success message indicating that the user has been deleted.
+
+
+Note: This API is built using Node.js. Proper authentication and authorization mechanisms are in place to ensure the security of the endpoints. Always include the authentication token or session key in your requests where required. If you encounter any issues or have questions, please contact the API administrator.
+```
+
 ### About Me
 
 [Sahil_Resume](https://drive.google.com/file/d/1o6V1oLOT9RHnDAsb9dxn-w8XGeXAKdtO/view)  
